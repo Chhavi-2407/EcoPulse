@@ -1,16 +1,164 @@
-# React + Vite
+# 🌍 EcoPulse — Ecological Footprint Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EcoPulse is a modern, interactive web application that helps users estimate their ecological footprint based on lifestyle choices such as food, housing, energy, and transportation.
 
-Currently, two official plugins are available:
+It provides a visually engaging experience with dynamic questions, smooth navigation, and a detailed results dashboard — inspired by real-world sustainability tools.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* 🌱 **Interactive Quiz System**
 
-## Expanding the ESLint configuration
+  * Slider-based and option-based questions
+  * Smooth navigation (Next / Previous)
+  * Dynamic rendering from a centralized data file
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* 🧠 **Smart Result Calculation**
+
+  * Calculates estimated "Earths needed"
+  * Shows environmental impact visually
+  * Displays top contributing factors
+
+* 📊 **Detailed Insights**
+
+  * Category-wise breakdown (Food, Housing, Energy, etc.)
+  * Comparison with ideal sustainable values
+  * Actionable improvement suggestions
+
+* 🎨 **Modern UI/UX**
+
+  * Full-screen immersive design
+  * Smooth animations and transitions
+  * Space-themed aesthetic with floating elements
+
+* 🔁 **State Management**
+
+  * Global state using React Context API
+  * Answers persist across navigation
+
+* 🔗 **Routing**
+
+  * Multi-page navigation using React Router
+  * Seamless transition between Quiz and Result pages
+
+---
+
+## 🛠️ Tech Stack
+
+* ⚛️ React (Vite)
+* 🧭 React Router DOM
+* 🎨 CSS (Custom styling + animations)
+* 🧠 Context API (State Management)
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+│
+├── components/
+│   ├── Section.jsx
+│   ├── QuestionSlider.jsx
+│   ├── QuestionOptions.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── Quiz.jsx
+│   ├── Result.css
+│   ├── Result.jsx
+│
+├── context/
+│   ├── AppContext.jsx
+│
+├── data/
+│   ├── questions.js
+│
+├── styles/
+│   ├── Home.css
+│   ├── Quiz.css
+│
+├── App.jsx
+├── main.jsx
+├── App.css
+├── index.css
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Chhavi-2407/EcoPulse.git
+cd ecopulse
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Run the project
+
+```bash
+npm run dev
+```
+
+---
+
+## 🧪 How It Works
+
+1. User starts from the Home page
+2. Answers 10 lifestyle-based questions
+3. Each answer contributes to a footprint score
+4. Final result calculates:
+
+   * 🌍 Earths required
+   * 📊 Category breakdown
+   * 🔥 Top contributors
+5. Suggestions are provided to reduce impact
+
+---
+
+## 📌 Key Concepts Used
+
+* Dynamic rendering from data (`questions.js`)
+* Conditional UI rendering (slider vs options)
+* State lifting using Context API
+* Route-based navigation
+* Responsive layout design
+* Animated UI transitions
+
+---
+
+## 🎯 Future Improvements
+
+* 🔐 User authentication & saving results
+* 📈 Advanced analytics dashboard
+* 🌐 Backend integration (Node.js / Firebase)
+* 📱 Mobile app version
+* 🌍 Real-time carbon data APIs
+
+---
+
+## 🙌 Acknowledgements
+
+Inspired by ecological footprint tools like:
+
+* Global Footprint Network
+* Sustainability awareness platforms
+
+---
+
+
+## ⭐ Show Your Support
+
+If you like this project, consider giving it a ⭐ on GitHub!
