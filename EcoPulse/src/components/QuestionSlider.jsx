@@ -1,5 +1,8 @@
 import { useContext } from "react";
+
 import { AppContext } from "../context/AppContext";
+
+// import "../styles/QuestionSlider.css";
 
 export default function QuestionSlider({
   title,
@@ -10,32 +13,64 @@ export default function QuestionSlider({
   id,
 }) {
 
-  const { answers, setAnswers } = useContext(AppContext);
+  const { answers, setAnswers } =
+    useContext(AppContext);
 
-  // get stored value
-  const value = answers[id] ?? 50;
+  // =========================
+  // STORED VALUE
+  // =========================
+
+  const value =
+    answers[`${id}_slider`] ?? 50;
+
+  // =========================
+  // LEVEL INDEX
+  // =========================
+
+  const levelIndex = Math.min(
+    levels.length - 1,
+
+    Math.floor(
+      (value / 100) * levels.length
+    )
+  );
+
+  // =========================
+  // CURRENT LEVEL
+  // =========================
+
+  const currentLevel =
+    levels[levelIndex] || {
+
+      label: "",
+      desc: "",
+      score: 0,
+    };
+
+  // =========================
+  // HANDLE CHANGE
+  // =========================
 
   const handleChange = (e) => {
-    const val = Number(e.target.value);
+
+    const val =
+      Number(e.target.value);
 
     setAnswers({
+
       ...answers,
-      [id]: val,
+
+      // UI VALUE
+      [`${id}_slider`]: val,
+
+      // ECO SCORE
+      [id]:
+        currentLevel.score,
     });
   };
 
-  // smooth mapping
-  const levelIndex = Math.min(
-    levels.length - 1,
-    Math.floor((value / 100) * levels.length)
-  );
-
-  const currentLevel = levels[levelIndex] || {
-    label: "",
-    desc: "",
-  };
-
   return (
+
     <div className="slider-question">
 
       <h1>{title}</h1>
@@ -48,11 +83,16 @@ export default function QuestionSlider({
 
         <input
           type="range"
+
           min="0"
           max="100"
+
           step="1"
+
           value={value}
+
           onChange={handleChange}
+
           className="smooth-slider"
         />
 
@@ -60,9 +100,19 @@ export default function QuestionSlider({
 
       </div>
 
+      {/* INFO */}
+
       <div className="slider-info">
-        <h2>{currentLevel.label}</h2>
-        <p>{currentLevel.description || currentLevel.desc}</p>
+
+        <h2>
+          {currentLevel.label}
+        </h2>
+
+        <p>
+          {currentLevel.description ||
+            currentLevel.desc}
+        </p>
+
       </div>
 
     </div>

@@ -1,24 +1,71 @@
-import { useState } from "react";
+import { useContext } from "react";
+
+import { AppContext } from "../context/AppContext";
+
 import "../styles/DoubleSlider.css";
 
 export default function DoubleSlider({
+  id,
+
   title1,
   minLabel1,
   maxLabel1,
+
   title2,
   minLabel2,
   maxLabel2,
+
   showNumbers,
+
   valueType1,
   valueType2,
 }) {
-    const { answers, setAnswers } = useContext(AppContext);
 
-const carDistance = answers[`${id}_1`] ?? 0;
-const bikeDistance = answers[`${id}_2`] ?? 0;
+  const { answers, setAnswers } =
+    useContext(AppContext);
+
+  // =========================
+  // DYNAMIC VALUES
+  // =========================
+
+  const value1 =
+    answers[`${id}_1`] ?? 0;
+
+  const value2 =
+    answers[`${id}_2`] ?? 0;
+
+  // =========================
+  // DYNAMIC MAX VALUES
+  // =========================
+
+  const getMax = (type) => {
+
+    if (type === "distance")
+      return 800;
+
+    if (type === "people")
+      return 10;
+
+    if (type === "size")
+      return 500;
+
+    return 100;
+  };
+
+  const max1 =
+    getMax(valueType1);
+
+  const max2 =
+    getMax(valueType2);
+
+  // =========================
+  // GRADIENT
+  // =========================
 
   const getGradient = (value, max) => {
-    const percentage = (value / max) * 100;
+
+    const percentage =
+      (value / max) * 100;
 
     return {
       background: `linear-gradient(
@@ -31,15 +78,22 @@ const bikeDistance = answers[`${id}_2`] ?? 0;
     };
   };
 
-  // KM → Miles conversion
+  // =========================
+  // KM → MILES
+  // =========================
+
   const kmToMiles = (km) => {
     return Math.round(km * 0.621371);
   };
 
   return (
+
     <div className="double-slider-wrapper">
 
+      {/* ========================= */}
       {/* FIRST SLIDER */}
+      {/* ========================= */}
+
       <div className="double-slider-block">
 
         <h1 className="double-title">
@@ -54,17 +108,27 @@ const bikeDistance = answers[`${id}_2`] ?? 0;
 
           <input
             type="range"
+
             min="0"
-            max="800"
-            value={carDistance}
+            max={max1}
+
+            value={value1}
+
             onChange={(e) =>
               setAnswers({
-  ...answers,
-  [`${id}_1`]: Number(e.target.value),
-})
+                ...answers,
+
+                [`${id}_1`]:
+                  Number(e.target.value),
+              })
             }
+
             className="eco-slider"
-            style={getGradient(carDistance, 800)}
+
+            style={getGradient(
+              value1,
+              max1
+            )}
           />
 
           <span className="slider-label">
@@ -73,33 +137,46 @@ const bikeDistance = answers[`${id}_2`] ?? 0;
 
         </div>
 
+        {/* VALUE DISPLAY */}
+
         {showNumbers && (
+
           <div className="slider-value">
 
             {/* DISTANCE */}
+
             {valueType1 === "distance" && (
               <>
-                <h3>{carDistance} kms</h3>
-                <p>{kmToMiles(carDistance)} miles</p>
+                <h3>{value1} kms</h3>
+
+                <p>
+                  {kmToMiles(value1)} miles
+                </p>
               </>
             )}
 
             {/* PEOPLE */}
+
             {valueType1 === "people" && (
-              <h3>{carDistance} People</h3>
+              <h3>{value1} People</h3>
             )}
 
-            {/* HOME SIZE */}
+            {/* SIZE */}
+
             {valueType1 === "size" && (
-              <h3>{carDistance} m²</h3>
+              <h3>{value1} m²</h3>
             )}
 
           </div>
+
         )}
 
       </div>
 
+      {/* ========================= */}
       {/* SECOND SLIDER */}
+      {/* ========================= */}
+
       <div className="double-slider-block second-block">
 
         <h1 className="double-title">
@@ -114,17 +191,27 @@ const bikeDistance = answers[`${id}_2`] ?? 0;
 
           <input
             type="range"
+
             min="0"
-            max="800"
-            value={bikeDistance}
+            max={max2}
+
+            value={value2}
+
             onChange={(e) =>
               setAnswers({
-  ...answers,
-  [`${id}_2`]: Number(e.target.value),
-})
+                ...answers,
+
+                [`${id}_2`]:
+                  Number(e.target.value),
+              })
             }
+
             className="eco-slider"
-            style={getGradient(bikeDistance, 800)}
+
+            style={getGradient(
+              value2,
+              max2
+            )}
           />
 
           <span className="slider-label">
@@ -133,28 +220,38 @@ const bikeDistance = answers[`${id}_2`] ?? 0;
 
         </div>
 
+        {/* VALUE DISPLAY */}
+
         {showNumbers && (
+
           <div className="slider-value">
 
             {/* DISTANCE */}
+
             {valueType2 === "distance" && (
               <>
-                <h3>{bikeDistance} kms</h3>
-                <p>{kmToMiles(bikeDistance)} miles</p>
+                <h3>{value2} kms</h3>
+
+                <p>
+                  {kmToMiles(value2)} miles
+                </p>
               </>
             )}
 
             {/* PEOPLE */}
+
             {valueType2 === "people" && (
-              <h3>{bikeDistance} People</h3>
+              <h3>{value2} People</h3>
             )}
 
-            {/* HOME SIZE */}
+            {/* SIZE */}
+
             {valueType2 === "size" && (
-              <h3>{bikeDistance} m²</h3>
+              <h3>{value2} m²</h3>
             )}
 
           </div>
+
         )}
 
       </div>
