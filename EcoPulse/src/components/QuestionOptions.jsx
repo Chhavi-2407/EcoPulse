@@ -1,5 +1,8 @@
 import { useContext } from "react";
+
 import { AppContext } from "../context/AppContext";
+
+import "../styles/QuestionOptions.css";
 
 export default function QuestionOptions({
   title,
@@ -7,36 +10,46 @@ export default function QuestionOptions({
   id,
 }) {
 
-  const { answers, setAnswers } = useContext(AppContext);
+  const { answers, setAnswers } =
+    useContext(AppContext);
 
-  const selected = answers[id];
-
-  const handleSelect = (index) => {
-    setAnswers({
-      ...answers,
-      [id]: index,
-    });
-  };
+  const selectedOption =
+    answers[id];
 
   return (
+
     <div className="options-question">
 
-      <h1>{title}</h1>
+      <h1 className="options-title">
+        {title}
+      </h1>
 
       <div className="options-container">
 
         {options.map((option, index) => (
+
           <button
             key={index}
-            onClick={() => handleSelect(index)}
-            className={
-              selected === index
-                ? "option-btn active"
-                : "option-btn"
+
+            className={`option-btn ${
+              selectedOption === option.score
+                ? "selected"
+                : ""
+            }`}
+
+            onClick={() =>
+              setAnswers({
+                ...answers,
+
+                [id]: option.score,
+              })
             }
           >
-            {option}
+
+            {option.label}
+
           </button>
+
         ))}
 
       </div>
