@@ -1,16 +1,25 @@
-import DoubleSlider from "../components/DoubleSlider";
-
 export const questions = [
+
+  // =========================
+  // FOOD
+  // =========================
+
   {
     id: "food",
-    title: "How often do you eat animal-based products?",
-    subtitle: "(beef, pork, chicken, fish, eggs, dairy products)",
+
     type: "slider",
 
-    minLabel: "Never",
-    maxLabel: "Very Often",
+    title:
+      "How often do you eat animal-based products?",
+
+    subtitle:
+      "(beef, pork, chicken, fish, eggs, dairy products)",
+
+    minLabel: "NEVER",
+    maxLabel: "VERY OFTEN",
 
     levels: [
+
       {
         label: "Never",
         description: "(vegan)",
@@ -19,20 +28,19 @@ export const questions = [
 
       {
         label: "Infrequently",
-        description: "(vegetarian - eggs/dairy, no meat)",
+        description: "(vegetarian)",
         score: 25,
       },
 
       {
         label: "Occasionally",
-        description: "(really like veggies - occasional meat, eggs/dairy)",
+        description: "(occasional meat)",
         score: 50,
       },
 
       {
         label: "Often",
-        description:
-          "(balanced meat/veggies - meat a few times a week, eggs/dairy almost daily)",
+        description: "(meat several times a week)",
         score: 75,
       },
 
@@ -43,6 +51,11 @@ export const questions = [
       },
     ],
   },
+
+  // =========================
+  // LOCAL FOOD
+  // =========================
+
   {
     id: "localFood",
 
@@ -51,274 +64,382 @@ export const questions = [
     title:
       "How much of the food that you eat is unprocessed, unpackaged or locally grown?",
 
-    subtitle: "(less than 320 kilometers/200 miles away)",
+    subtitle:
+      "(less than 320 kilometers/200 miles away)",
 
     minLabel: "NONE",
     maxLabel: "ALL",
 
     levels: [
+
       {
-        label: "0%",
-        description: "Almost everything is packaged/imported",
+        label: "0 %",
+        description: "Imported food",
+        score: 100,
       },
+
       {
-        label: "25%",
-        description: "A small amount is local or unpackaged",
+        label: "25 %",
+        description: "Small local contribution",
+        score: 75,
       },
+
       {
-        label: "50%",
-        description: "About half your food is local/unprocessed",
+        label: "50 %",
+        description: "Balanced food sourcing",
+        score: 50,
       },
+
       {
-        label: "75%",
-        description: "Most food is local, unpackaged or natural",
+        label: "75 %",
+        description: "Mostly local",
+        score: 25,
       },
+
       {
-        label: "100%",
-        description: "Everything is local and unprocessed",
+        label: "100 %",
+        description: "Completely local",
+        score: 0,
       },
     ],
   },
+
+  // =========================
+  // HOUSING TYPE
+  // =========================
+
   {
     id: "housing",
 
     type: "options",
 
-    category: "HOUSING",
-
-    title: "Which housing type best describes your home?",
+    title:
+      "Which housing type best describes your home?",
 
     options: [
-      "Freestanding, no running water",
-      "Freestanding, running water",
-      "Multi-storey apartment",
-      "Duplex, row house or building with 2-4 housing units",
-      "Luxury condominium",
-    ],
 
-    image: "/images/housing-bg.png",
+      {
+        label: "Freestanding, no running water",
+        score: 5,
+      },
+
+      {
+        label: "Freestanding, running water",
+        score: 10,
+      },
+
+      {
+        label: "Multi-storey apartment",
+        score: 15,
+      },
+
+      {
+        label:
+          "Duplex, row house or building with 2-4 housing units",
+        score: 20,
+      },
+
+      {
+        label: "Luxury condominium",
+        score: 25,
+      },
+    ],
   },
+
+  // =========================
+  // HOUSEHOLD
+  // =========================
+
   {
     id: "household",
+
     type: "double-slider",
 
-    title1: "How many people live in your household?",
+    title1:
+      "How many people live in your household?",
+
     minLabel1: "JUST ME",
     maxLabel1: "10+",
 
-    title2: "What is the size of your home?",
+    title2:
+      "What is the size of your home?",
+
     minLabel2: "TINY",
     maxLabel2: "HUGE",
 
-    image: "/images/housing-area-bg.png",
-
-    showNumbers: false,
+    showNumbers: true,
 
     valueType1: "people",
     valueType2: "size",
   },
+
+  // =========================
+  // ELECTRICITY
+  // =========================
+
   {
     id: "electricity",
 
     type: "slider",
 
-    title: "How energy efficient is your home?",
+    title:
+      "How energy efficient is your home?",
 
     subtitle:
-      "(modern appliances, climate controls, insulation, careful energy use)",
+      "(modern appliances, insulation, careful energy use)",
 
     minLabel: "HARDLY",
     maxLabel: "VERY",
 
     levels: [
+
       {
         label: "Very inefficient",
-        desc: "poor insulation, heavy electricity use",
+        desc: "heavy electricity use",
+        score: 100,
       },
 
       {
         label: "Below average",
-        desc: "basic appliances with moderate efficiency",
+        desc: "basic efficiency",
+        score: 75,
       },
 
       {
         label: "Average",
-        desc: "modern appliances and balanced energy usage",
+        desc: "moderate usage",
+        score: 50,
       },
 
       {
         label: "Above average",
-        desc: "well insulated with efficient lighting",
+        desc: "good efficiency",
+        score: 25,
       },
 
       {
-        label: "Efficiency-centered design",
-        desc: "optimized for very low energy consumption",
+        label: "Efficiency-centered",
+        desc: "optimized home",
+        score: 0,
       },
     ],
-
-    image: "/images/eco-dark-bg.png",
   },
+
+  // =========================
+  // RENEWABLE ENERGY
+  // =========================
+
   {
     id: "renewable",
+
+    type: "slider",
 
     title:
       "What percentage of your home's electricity comes from renewable sources?",
 
-    subtitle: "(either directly or through purchased green power)",
-
-    type: "slider",
+    subtitle:
+      "(either directly or through purchased green power)",
 
     minLabel: "LOW",
     maxLabel: "HIGH",
 
     levels: [
+
       {
         label: "0%",
-        desc: "No renewable electricity usage",
+        desc: "No renewable energy",
+        score: 100,
       },
 
       {
-        label: "27%",
-        desc: "Small amount of renewable energy usage",
+        label: "25%",
+        desc: "Small renewable usage",
+        score: 75,
       },
 
       {
-        label: "46%",
-        desc: "Moderate renewable electricity usage",
+        label: "50%",
+        desc: "Moderate renewable usage",
+        score: 50,
       },
 
       {
-        label: "82%",
-        desc: "High renewable energy contribution",
+        label: "75%",
+        desc: "High renewable usage",
+        score: 25,
       },
 
       {
         label: "100%",
-        desc: "Fully powered by renewable electricity",
+        desc: "Fully renewable",
+        score: 0,
       },
     ],
-
-    image: "/images/renewable-dark-bg.png",
   },
+
+  // =========================
+  // TRANSPORT
+  // =========================
+
   {
     id: "transport",
-    title: "Daily transportation type?",
+
     type: "options",
-    options: ["Walking", "Public Transport", "Bike", "Car", "SUV"],
+
+    title:
+      "Daily transportation type?",
+
+    options: [
+
+      {
+        label: "Walking",
+        score: 0,
+      },
+
+      {
+        label: "Public Transport",
+        score: 5,
+      },
+
+      {
+        label: "Bike",
+        score: 3,
+      },
+
+      {
+        label: "Car",
+        score: 15,
+      },
+
+      {
+        label: "SUV",
+        score: 25,
+      },
+    ],
   },
+
+  // =========================
+  // FLIGHTS
+  // =========================
+
   {
     id: "flights",
 
-    title: "How many hours do you fly each year?",
-
     type: "slider",
+
+    title:
+      "How many hours do you fly each year?",
 
     minLabel: "NONE",
     maxLabel: "MANY",
 
     levels: [
+
       {
-        label: "6 Hours",
+        label: "0 Hours",
         desc: "Very little air travel",
+        score: 5,
       },
 
       {
-        label: "108 Hours",
-        desc: "Occasional flights throughout the year",
+        label: "100 Hours",
+        desc: "Occasional flights",
+        score: 25,
       },
 
       {
         label: "200 Hours",
         desc: "Moderate annual flying",
+        score: 50,
       },
 
       {
-        label: "350 Hours",
-        desc: "Frequent air travel",
+        label: "300 Hours",
+        desc: "Frequent flying",
+        score: 75,
       },
 
       {
-        label: "500+ Hours",
-        desc: "Extremely high air travel",
+        label: "400+ Hours",
+        desc: "Extreme flying",
+        score: 100,
       },
     ],
-
-    image: "/images/flights-dark-bg.png",
   },
+
+  // =========================
+  // DISTANCE
+  // =========================
+
   {
     id: "distance",
 
     type: "double-slider",
 
-    title1: "How far do you travel by car each week?",
+    title1:
+      "How far do you travel by car each week?",
+
     minLabel1: "ZERO",
     maxLabel1: "VERY FAR",
 
-    title2: "How far do you travel by motorcycle each week?",
+    title2:
+      "How far do you travel by motorcycle each week?",
+
     minLabel2: "ZERO",
     maxLabel2: "VERY FAR",
 
-    levels1: [
-      { label: "0 kms", desc: "0 miles" },
-      { label: "120 kms", desc: "75 miles" },
-      { label: "378 kms", desc: "236 miles" },
-      { label: "600 kms", desc: "373 miles" },
-      { label: "800 kms", desc: "500 miles" },
-    ],
-
-    levels2: [
-      { label: "5 kms", desc: "3 miles" },
-      { label: "243 kms", desc: "152 miles" },
-      { label: "534 kms", desc: "334 miles" },
-      { label: "700 kms", desc: "435 miles" },
-      { label: "800 kms", desc: "500 miles" },
-    ],
-
-    image: "/images/transport-distance-bg.png",
     showNumbers: true,
+
     valueType1: "distance",
     valueType2: "distance",
   },
+
+  // =========================
+  // WASTE
+  // =========================
+
   {
     id: "waste",
 
-    title: "Compared to your neighbors, how much trash do you generate?",
-
     type: "slider",
 
-    category: "HOUSING",
+    title:
+      "Compared to your neighbour, how much trash do you generate?",
 
     minLabel: "MUCH LESS",
     maxLabel: "MUCH MORE",
 
     levels: [
+
       {
         label: "Much less",
-        description: "You produce very little waste",
+        description: "Very low waste",
+        score: 0,
       },
 
       {
         label: "Less",
-        description: "Below average trash generation",
+        description: "Below average",
+        score: 25,
       },
 
       {
         label: "Same",
-        description: "About the same as neighbors",
+        description: "Average waste",
+        score: 50,
       },
 
       {
         label: "More",
-        description: "Above average trash generation",
+        description: "High waste",
+        score: 75,
       },
 
       {
         label: "Much more",
-        description: "You generate significantly more waste",
+        description: "Very high waste",
+        score: 100,
       },
     ],
-
-    image: "/images/waste-bg.png",
   },
 ];

@@ -1,59 +1,152 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { AppContext } from "../context/AppContext";
 
 import Section from "../components/Section";
 import QuestionSlider from "../components/QuestionSlider";
 import QuestionOptions from "../components/QuestionOptions";
+import DoubleSlider from "../components/DoubleSlider";
 
 import { questions } from "../data/questions";
-import { useLocation } from "react-router-dom";
+
 import "../styles/Quiz.css";
 
 export default function Quiz() {
-    const location = useLocation();
-  const [current, setCurrent] = useState(
-  location.state?.index ?? 0
-);
+  const { answers } = useContext(AppContext);
+
+  const location = useLocation();
+
   const navigate = useNavigate();
 
-  const question = questions[current];
-
-  const next = () => {
-    if (current >= questions.length - 1) {
-      navigate("/result", {
-  state: { lastIndex: current },
-});
-    } else {
-      setCurrent((prev) => prev + 1);
+  const [current, setCurrent] = useState(() => {
+    if (location.state?.fromResult) {
+      return questions.length - 1;
     }
+
+    return location.state?.index ?? 0;
+  });
+
+  const question = questions[current] || questions[0];
+
+  // =========================
+  // VALIDATION
+  // =========================
+
+  const isAnswered = () => {
+    // SLIDER
+    if (question.type === "slider") {
+      return answers[question.id] !== undefined;
+    }
+
+    // OPTIONS
+    if (question.type === "options") {
+      return answers[question.id] !== undefined;
+    }
+
+    // DOUBLE SLIDER
+    if (question.type === "double-slider") {
+      return (
+        answers[`${question.id}_1`] !== undefined &&
+        answers[`${question.id}_2`] !== undefined
+      );
+    }
+
+    return false;
   };
 
-  const prev = () => {
-    if (current === 0) {
-      navigate("/"); //  navigate to home 
-    } else {
-      setCurrent((prev) => prev - 1);
+  // =========================
+  // NEXT
+  // =========================
+
+  const next = () => {
+    // LAST QUESTION
+    if (current >= questions.length - 1) {
+      navigate("/result");
+
+      return;
     }
+
+    // NEXT QUESTION
+    setCurrent((prev) => prev + 1);
+  };
+
+  // =========================
+  // PREVIOUS
+  // =========================
+
+  const prev = () => {
+    // FIRST QUESTION
+    if (current <= 0) {
+      navigate("/");
+
+      return;
+    }
+
+    // PREVIOUS QUESTION
+    setCurrent((prev) => prev - 1);
   };
 
   return (
     <div className="quiz-container">
+      <button className="home-btn" onClick={() => navigate("/")}>
+            ⌂ Home
+          </button>
       <Section key={current}>
         <div className="quiz-content">
-          {/* QUESTION */}
-          {question.type === "slider" && (
-            <QuestionSlider title={question.title} labels={question.labels} />
-          )}
+          {/* ========================= */}
+          {/* SLIDER QUESTION */}
+          {/* ========================= */}
 
-          {question.type === "options" && (
-            <QuestionOptions
+          {question.type === "slider" && (
+            <QuestionSlider
+              id={question.id}
               title={question.title}
-              options={question.options}
-              id={question.id} 
+              subtitle={question.subtitle}
+              minLabel={question.minLabel}
+              maxLabel={question.maxLabel}
+              levels={question.levels}
             />
           )}
 
-          {/* BUTTONS */}
+          {/* ========================= */}
+          {/* OPTIONS QUESTION */}
+          {/* ========================= */}
+
+          {question.type === "options" && (
+            <QuestionOptions
+              id={question.id}
+              title={question.title}
+              options={question.options}
+            />
+          )}
+
+          {/* ========================= */}
+          {/* DOUBLE SLIDER */}
+          {/* ========================= */}
+
+          {question.type === "double-slider" && (
+            <DoubleSlider
+              id={question.id}
+              title1={question.title1}
+              minLabel1={question.minLabel1}
+              maxLabel1={question.maxLabel1}
+              title2={question.title2}
+              minLabel2={question.minLabel2}
+              maxLabel2={question.maxLabel2}
+              showNumbers={question.showNumbers}
+              valueType1={question.valueType1}
+              valueType2={question.valueType2}
+            />
+          )}
+
+          {/* ========================= */}
+          {/* NAV BUTTONS */}
+          {/* ========================= */}
+
+          
+
           <div className="nav-buttons">
             <button className="prev-btn" onClick={prev}>
               ← Previous

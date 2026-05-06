@@ -5,7 +5,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleStart = () => {
-    navigate("/quiz"); // navigate to quiz page
+    navigate("/quiz"); //navigate to quiz page
   };
 
   return (
