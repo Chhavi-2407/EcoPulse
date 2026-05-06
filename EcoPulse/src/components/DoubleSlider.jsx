@@ -244,6 +244,7 @@ export default function DoubleSlider({
               <h3>{value2} People</h3>
             )}
 
+
             {/* SIZE */}
 
             {valueType2 === "size" && (
