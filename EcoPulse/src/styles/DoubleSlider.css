@@ -1,0 +1,99 @@
+.double-slider-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  margin-top: 20px;
+}
+
+.double-slider-block {
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+}
+
+.second-block {
+  margin-top: -10px;
+}
+
+/* TITLES */
+.double-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: white;
+  margin-bottom: 30px;
+}
+
+/* SLIDER ROW */
+.double-slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* LABELS */
+.slider-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  min-width: 90px;
+}
+
+/* SLIDER */
+.eco-slider {
+  width: 380px;
+  height: 8px;
+  border-radius: 20px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* THUMB */
+.eco-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f4f1ea;
+  border: 4px solid #5c6474;
+  cursor: pointer;
+}
+
+.eco-slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f4f1ea;
+  border: 4px solid #5c6474;
+  cursor: pointer;
+}
+
+/* VALUES */
+.slider-value {
+  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}
+.slider-value {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.slider-value h3 {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.slider-value p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  margin-top: 4px;
+}
